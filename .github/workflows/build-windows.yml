@@ -70,16 +70,18 @@ jobs:
         shell: pwsh
         run: |
           $exe = "dist/AStockDashboard/AStockDashboard.exe"
-          # 退出码即自检结论：0=全部通过，1=存在阻断项。
-          # 报告落盘在 %APPDATA%\AStockDashboard\selftest.txt
-          & $exe --selftest
-          $code = $LASTEXITCODE
           $report = Join-Path $env:APPDATA "AStockDashboard\selftest.txt"
+          # 清掉旧报告，确保读到的一定是本次运行产生的
+          if (Test-Path $report) { Remove-Item $report -Force }
+          # 该 exe 是 GUI 子系统程序（console=False），PowerShell 直接调用不会等待它结束，
+          # $LASTEXITCODE 会取到空值 —— 必须用 Start-Process -Wait 显式等待并取退出码。
+          $proc = Start-Process -FilePath $exe -ArgumentList "--selftest" -Wait -PassThru
+          $code = $proc.ExitCode
           if (Test-Path $report) {
             Write-Host "----- 自检报告 -----"
             Get-Content $report -Encoding UTF8 | ForEach-Object { Write-Host $_ }
           } else {
-            Write-Host "⚠️  未找到自检报告文件"
+            Write-Host "⚠️  未找到自检报告文件: $report"
           }
           Write-Host "----- 自检退出码: $code -----"
           if ($code -ne 0) {
