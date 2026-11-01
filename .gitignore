@@ -1,0 +1,12 @@
+# Python / 构建产物
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec.bak
+.cache/
+.venv*/
+
+# 系统
+.DS_Store
+Thumbs.db
