@@ -15,6 +15,10 @@ on:
   push:
     branches: [main, master]
     paths:
+      # 注意：必须包含 workflow 文件自身。
+      # 若只修改了 .github/workflows/build-windows.yml 而不在 paths 中，
+      # GitHub 不会触发构建 —— 会表现为「提交成功但构建一直没动静」。
+      - '.github/workflows/build-windows.yml'
       - 'desktop_app.py'
       - 'desktop_app.spec'
       - 'server.py'
