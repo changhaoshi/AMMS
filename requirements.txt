@@ -1,0 +1,13 @@
+# A股实时看盘看板 · Windows 桌面版构建依赖
+#
+# 业务代码本身只依赖 Python 标准库；以下仅为「打包成桌面应用」所需。
+#
+# 版本说明：
+#   pyinstaller 6.x  —— 6.22.3 为本机实测通过的版本
+#   pywebview 6.2.1  —— 6.x 起 Windows 后端改用 pythonnet
+#   pythonnet 3.2.1  —— Windows 上默认走 netfx（.NET Framework 4.x），
+#                        Win10/11 自带，终端用户无需另装 .NET
+#                        注意：pythonnet 3.2.1 要求 Python >= 3.11
+pyinstaller==6.22.3
+pywebview==6.2.1
+pythonnet==3.2.1

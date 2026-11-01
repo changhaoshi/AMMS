@@ -22,6 +22,7 @@ on:
       - 'backfill_history.py'
       - 'build_inline.py'
       - 'index.template.html'
+      - 'requirements.txt'
       - 'vendor/echarts.min.js'
   workflow_dispatch:      # 允许手动触发
 
@@ -43,10 +44,9 @@ jobs:
       - name: 安装依赖
         run: |
           python -m pip install --upgrade pip
+          # 依赖清单见 requirements.txt，版本已固定，保证构建可复现。
           # pythonnet 提供 clr / System，Windows 的 edgechromium、winforms 后端都依赖它。
-          # pythonnet 3.x 在 Windows 上默认使用 netfx（.NET Framework 4.x，Win10/11 自带），
-          # 因此终端用户无需额外安装 .NET。
-          pip install pyinstaller pywebview pythonnet
+          pip install -r requirements.txt
 
       - name: 生成自包含页面
         run: python build_inline.py
