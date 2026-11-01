@@ -23,6 +23,7 @@ on:
       - 'build_inline.py'
       - 'index.template.html'
       - 'requirements.txt'
+      - 'utf8_stdout.py'
       - 'vendor/echarts.min.js'
   workflow_dispatch:      # 允许手动触发
 

@@ -16,6 +16,8 @@ build_inline.py —— 把 ECharts 内联进 index.html，产出完全自包含�
 import os
 import re
 
+import utf8_stdout  # noqa: F401  (导入即生效：保证 Windows 控制台可输出中文)
+
 BASE = os.path.dirname(os.path.abspath(__file__))
 TPL = os.path.join(BASE, "index.template.html")
 OUT = os.path.join(BASE, "index.html")

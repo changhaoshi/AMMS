@@ -60,6 +60,10 @@ else:
 hiddenimports = [
     "webview",
     "bottle",
+    # utf8_stdout 被 server / data_sources / backfill_history 以模块名导入，
+    # PyInstaller 的静态分析通常能发现，但显式声明更保险
+    # （否则 Windows 上会因缺模块导致启动即崩）。
+    "utf8_stdout",
 ] + gui_backends
 
 a = Analysis(

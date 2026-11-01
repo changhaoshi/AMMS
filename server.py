@@ -24,6 +24,7 @@ from typing import Any, Dict
 
 import backfill_history
 import data_sources as ds
+import utf8_stdout  # noqa: F401  (导入即生效：保证 Windows 控制台可输出中文)
 
 BASE_DIR = ds.BASE_DIR          # 打包环境下指向 PyInstaller 解包目录
 PORT = 8770

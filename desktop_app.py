@@ -22,6 +22,8 @@ import threading
 import time
 import urllib.parse
 
+import utf8_stdout  # noqa: F401  (导入即生效：保证 Windows 控制台可输出中文)
+
 # --------------------------------------------------- 打包环境适配
 
 def _resource_root() -> str:

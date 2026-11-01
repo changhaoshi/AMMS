@@ -19,6 +19,7 @@ import sys
 import time
 
 import data_sources as ds
+import utf8_stdout  # noqa: F401  (导入即生效：保证 Windows 控制台可输出中文)
 
 HIST_FILE = ds.disk_cache_path("limit_history.json")
 DAYS = 30
